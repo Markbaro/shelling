@@ -15,7 +15,8 @@ char **tokenize(char *str, int args)
 
 	if (line == NULL || tokenList == NULL)
 		return (NULL);
-	for (index = 0, token = strtok(line, delim); token != NULL; index++, token = strtok(NULL, delim))
+	for (index = 0, token = strtok(line, delim); token != NULL; index++,
+			token = strtok(NULL, delim))
 	{
 		tokenList[index] = strdup(token);
 		if (tokenList[index] == NULL)
