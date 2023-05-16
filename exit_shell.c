@@ -2,12 +2,12 @@
 
 /**
   * exit_shell - exits the shell
-  * @codes: exit codes
-  * @line: space to be free as we exit
-  * Return: 0
+  * @exit_codes: array of exit codes
+  * @input_line: pointer to the input line
+  * Return: 0 on success
   */
 
-int exit_shell(char **codes, char *line)
+int exit_shell(char **exit_codes, char *input_line)
 {
 	int exitCode = 0;
 
@@ -20,4 +20,3 @@ int exit_shell(char **codes, char *line)
 	free_function(2, arguments);
 	exit(exitCode);
 }
-
