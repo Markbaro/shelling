@@ -2,7 +2,7 @@
 
 /**
  * loop - main loop of the shell
- * Retuen: no return
+ * Return: no return
  */
 
 void loop(void)
