@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include "simple_shell.h"
 
 /**
  * Main - entry of program

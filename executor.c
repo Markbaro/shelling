@@ -1,16 +1,21 @@
-#include <sys/stat.h>
+#include "simple_shell.h"
 
-int myInterpreter(char **arguments)
+/**
+ * compiler -
+ * @ags
+ * Return: 0 on success
+ */
+int compiler(char **ags)
 {
-	struct stat fileStats;
+	struct stat store;
 
-	return ((mySearchBuiltins(arguments) == 0))
+	return ((mySearchBuiltins(ags) == 0))
 			? 0
-			: (mySearch(arguments) == -1)
+			: (mySearch(ags) == -1)
 				? -1
-				: (stat(arguments[0], &fileStats) == -1 || S_ISREG(fileStats.st_mode) == 0)
+				: (stat(ags[0], &store) == -1 || S_ISREG(store.st_mode) == 0)
 					? -1
-					: (myExecution(arguments) == -1)
+					: (shell_execute(ags) == -1)
 						? -1
 						: 0;
 }

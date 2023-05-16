@@ -1,13 +1,13 @@
-#include "simple shell.h"
+#include "simple_shell.h"
 
 /**
   * exit_shell - exits the shell
-  * @exit_codes: array of exit codes
+  * @arguments: array of exit codes
   * @input_line: pointer to the input line
   * Return: 0 on success
   */
 
-int exit_shell(char **exit_codes, char *input_line)
+int exit_shell(char **arguments, char *input_line)
 {
 	int exitCode = 0;
 
@@ -16,7 +16,7 @@ int exit_shell(char **exit_codes, char *input_line)
 	if (exitCode == -1)
 		return (-1);
 
-	free_function(1, inputLine);
+	free_function(1, input_line);
 	free_function(2, arguments);
 	exit(exitCode);
 }
