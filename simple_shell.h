@@ -39,4 +39,5 @@ int _strcmp{char *str1, char *str2);
 int _strlen(char *str);
 char _strdup(char *str);
 char *_strconcat(char *str1, char *str2);
+
 #endif /* SIMPLE SHELL_H */
