@@ -16,7 +16,7 @@ int exit_shell(char **arguments, char *input_line)
 	if (exitCode == -1)
 		return (-1);
 
-	free_function(1, input_line);
-	free_function(2, arguments);
+	free_memory(1, input_line);
+	free_memory(2, arguments);
 	exit(exitCode);
 }

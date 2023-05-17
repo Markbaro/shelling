@@ -13,12 +13,6 @@
 #include <sys/stat.h>
 #include <stddef.h>
 
-typedef struct simple_shell
-{
-    char *id;
-    int (*cmd_function)(void);
-} system_built;
-
 extern char **shell_envt;
 
 int shell_execute(char **argums);

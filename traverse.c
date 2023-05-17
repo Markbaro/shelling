@@ -5,6 +5,11 @@
  * @argums:  command
  * Return: Always 0 on success and -1 0n failure
 */
+typedef struct simple_shell
+{
+	char id;
+	int (*cmd_function) (void);
+} system_built;
 
 int check_system(char **argums)
 {
