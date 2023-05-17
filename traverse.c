@@ -9,21 +9,19 @@
 int shell_system_search(char **argums)
 {
 	system_built builtin_func[] = {
-		{"env", environ_print},
+		{"env", own_env},
 		{NULL, NULL}
 	};
+	int index, enquire;
 
-	int i, enquire = 0;
-
-	for (i = 0; builtin_func[i].id != NULL; i++)
+	while (builtin_func[index].id != NULL)
 	{
-		if (_strcmp(builtin_func[i].id, argums[0]) == 0 &&
-			_strlen(builtin_func[i].id) == _strlen(argums[0]))
-			enquire = builtin_func[i].cmd_function();
+		enquire = (_strcmp(builtin_func[index].id, argums[0]) == 0 &&
+		_strlen(builtin_func[index].id) == _strlen(argums[0])) ?
+		builtin_func[index].cmd_function() : enquire;
+		index++;
 	}
-	if (builtin_func[i].id == NULL)
-		return (-1);
-	return (enquire);
+	return ((builtin_func[index].id == NULL) ? -1 : enquire);
 }
 /**
  * arg_search-passes arguments to traverse and search functions
@@ -36,26 +34,15 @@ int arg_search(char **argums)
 	int iterate;
 
 	temp =  _strdup(find_shell_path"PATH");
-	if (temp == NULL)
-		return (0);
-	iterate = argums_counter(temp);
-	if (iterate == -1)
-	{
-		free_memory(1, temp);
+	if (!temp)
 		return (-1);
-	}
+	iterate = argums_counter(temp);
+	return ((iterate == -1) ? (free_memory(1, temp), -1) : -1);
 	mod_equals(&temp);
 	input_cmd = tokenize(temp, iterate);
-	if (input_cmd == NULL)
-	{
-		free_memory(1, temp);
-		return (-1);
-	}
-	if (directory_search(input_cmd, argums) == -1)
-	{
-		free_memory(1, temp);
-		return (-1);
-	}
+	return ((input_cmd == NULL) ? (free_memory(1, temp), -1) : -1);
+	return ((directory_search(input_cmd, argums) == -1) ?
+	(free_memory(1, temp), -1) : -1);
 	free_memory(1, temp);
 	return (0);
 }
