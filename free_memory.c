@@ -37,8 +37,8 @@ void free_double_ptr(char **ptr)
 void free_mem(int count, ...)
 {
 	va_list args;
-	va_start(args, count);
 
+	va_start(args, count);
 	char *sptr;
 	char **dptr;
 	int i = 0;
