@@ -23,21 +23,20 @@ extern char **shell_envt;
 
 int shell_execute(char **argums);
 void print_number(loops);
-int compiler(char **argums);
+int compiler(char **arglist);
+int scan_system(char **argums);
+int check_system(char **argums);
 int exit_shell(char **arguments, char *input_line);
-int getline(char *line);
+int getline(char *input_str);
 int main(__attribute__((unused)) int argc, char **argv);
 void loop(void);
 void error_message(char **argv, char **args, int loops);
-void free_mem(int count, ...);
+void free_memory(int count, ...);
 void free_double_ptr(char **ptr);
 void free_single_ptr(char *ptr);
 void signals(int sig);
-int arg_search(char **argums);
 int own_env(void);
 char **tokenize(char *str, int args);
-int argums_counter(char *input_str);
 void mod_equals(char **str);
-int shell_system_search(char **argums);
-int directory_search(char **input_cmd, char **argums);
+int scan_dir(char **input_cmd, char **argums);
 #endif /* SIMPLE SHELL_H */

@@ -3,20 +3,38 @@
 /**
  * compiler - inteprets arguments (argums[0]) and
  * checks the function to send to
- * @argums: argumesnt to be passed to the function
+ * @arglist: argumesnt to be passed to the function
  * Return: 0 on success
  */
-int compiler(char **argums)
+int compiler(char **arglist)
 {
-	struct stat fileStats;
+	struct stat filestat;
+	int system_result = check_system(arglist);
 
-	return (((shell_system_search(argums) == 0))
-			? 0
-			: (arg_search(argums) == -1)
-				? -1
-				: (stat(argums[0], &fileStats) == -1 || S_ISREG(fileStats.st_mode) == 0)
-					? -1
-					: (shell_execute(argums) == -1)
-						? -1
-						: 0);
+	switch (system_result)
+	{
+		case 0:
+			return (0);
+		case -1:
+			scan_system(arglist);
+			break;
+		default:
+			return (-1);
+	}
+	if (stat(arglist[0], &filestat) == -1)
+	{
+		return (-1);
+	}
+	switch (filestat.st_mode & S_IFMT)
+	{
+		case S_IFREG:
+			break;
+		default:
+			return (-1);
+	}
+	if (shell_execute(arglist) == -1)
+	{
+		return (-1);
+	}
+	return (0);
 }

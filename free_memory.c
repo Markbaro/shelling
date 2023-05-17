@@ -30,11 +30,11 @@ void free_double_ptr(char **ptr)
 	}
 }
 /**
- * free_mem - frees dynamically allocated memory
+ * free_memory - frees dynamically allocated memory
  * @count: specifies pointer to be freed
  * Return: void
  */
-void free_mem(int count, ...)
+void free_memory(int count, ...)
 {
 	va_list args;
 

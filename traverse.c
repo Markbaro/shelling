@@ -1,12 +1,12 @@
 #include "simple_shell.h"
 
 /**
- * shell_system_search - searches functions builtins
+ * check_system - searches functions builtins
  * @argums:  command
  * Return: Always 0 on success and -1 0n failure
 */
 
-int shell_system_search(char **argums)
+int check_system(char **argums)
 {
 	system_built builtin_func[] = {
 		{"env", own_env},
@@ -24,11 +24,11 @@ int shell_system_search(char **argums)
 	return ((builtin_func[index].id == NULL) ? -1 : enquire);
 }
 /**
- * arg_search-passes arguments to traverse and search functions
+ * scan_system - passes arguments to traverse and search functions
  * @argums: commands to search for
  * Return: int values- 0 for success and 1 on failure
  */
-int arg_search(char **argums)
+int scan_system(char **argums)
 {
 	char **input_cmd = NULL, *temp;
 	int iterate;
@@ -36,23 +36,23 @@ int arg_search(char **argums)
 	temp =  _strdup(find_shell_path"PATH");
 	if (!temp)
 		return (-1);
-	iterate = argums_counter(temp);
+	iterate = getline(temp);
 	return ((iterate == -1) ? (free_memory(1, temp), -1) : -1);
 	mod_equals(&temp);
 	input_cmd = tokenize(temp, iterate);
 	return ((input_cmd == NULL) ? (free_memory(1, temp), -1) : -1);
-	return ((directory_search(input_cmd, argums) == -1) ?
+	return ((scan_dir(input_cmd, argums) == -1) ?
 	(free_memory(1, temp), -1) : -1);
 	free_memory(1, temp);
 	return (0);
 }
 /**
- * directory_search - traverse through dirs till cmd is found
- *  @input_cmd: pointer to all PATH directories
- *  @argums: command argument to search for in the dir
- *  Return: Always 0 on Success and -1 on failure
+ * scan_dir - traverse through dirs till cmd is found
+ * @input_cmd: pointer to all PATH directories
+ * @argums: command argument to search for in the dir
+ * Return: Always 0 on Success and -1 on failure
  */
-int directory_search(char **input_cmd, char **argums)
+int scan_dir(char **input_cmd, char **argums)
 {
 	char *current_directory;
 	int i;
