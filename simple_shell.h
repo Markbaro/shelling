@@ -35,7 +35,7 @@ void mod_equals(char **str);
 char *get_path(char *target);
 int scan_dir(char **input_cmd, char **argums);
 int _atoi(char *str);
-int _strcmp{char *str1, char *str2);
+int _strcmp(char *str1, char *str2);
 int _strlen(char *str);
 char _strdup(char *str);
 char *_strconcat(char *str1, char *str2);

@@ -1,4 +1,4 @@
-#include "simole_shell.h"
+#include "simple_shell.h"
 
 /**
  * error_message - prints error message if command is invalid

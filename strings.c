@@ -33,12 +33,12 @@ int _atoi(char *str)
 }
 /**
  * _strcmp - compares char in 2 strings
- * @s1 : first string to compare
- * @s2 : second string to be compared
+ * @str1 : first string to compare
+ * @str2 : second string to be compared
  * Return:0 if strings are equal
  */
 
-int _strcmp{char *str1, char *str2)
+int _strcmp(char *str1, char *str2)
 {
 	int index = 0;
 	int diff;
