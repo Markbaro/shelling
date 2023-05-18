@@ -39,7 +39,6 @@ void mod_equals(char **str)
 	for (; str[0][iter] != '='; iter++)
 	{
 		str[0][iter] = ':';
-	}
-	str[0][iter];
+	};
 
 }

@@ -25,7 +25,7 @@ void error_message(char **argv, char **args, int loops)
 	}
 	if (argv[0] != NULL)
 	{
-		write(STDERR_FILENO, argv[0], strlen(argv[0]));
+		write(STDERR_FILENO, argv[0], strlen(args[0]));
 		write(STDERR_FILENO, separator, strlen(separator));
 	}
 	write(STDERR_FILENO, error1, strlen(error1));

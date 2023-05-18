@@ -36,13 +36,14 @@ void free_double_ptr(char **ptr)
  */
 void free_memory(int count, ...)
 {
+	char *sptr, **dptr;
+	int i;
+	
 	va_list args;
-
 	va_start(args, count);
-	char *sptr;
-	char **dptr;
-	int i = 0;
 
+	
+	i = 0;
 	while (i < count)
 	{
 		if (i == 0)

@@ -38,7 +38,7 @@ int _myAtoi(char *str)
  * Return:0 if strings are equal
  */
 
-int _strcmp(char *str1, char *str2)
+int *_strcmp(char *str1, char *str2)
 {
 	int index = 0;
 	int diff;
@@ -104,15 +104,14 @@ char *_strdup(char *str)
 
 char *_strconcat(char *str1, char *str2)
 {
-	int len1 = str1 ? _strlen(str1) : 0;
-	int len2 = str2 ? _strlen(str2) : 0;
+	int len1 = str1 ? _strlen(str1) : 0, i;
+	int len2 = str2 ? _strlen(str2) : 0, j = 0;
 	int len = len1 + len2 + 2;
 	char *strcon = malloc(sizeof(char) * len);
 
 	if (strcon == NULL)
 		return (NULL);
-	int i, j = 0;
-
+	
 	while (str1 && str1[i] != '\0')
 	{
 		strcon[j] = str1[i];

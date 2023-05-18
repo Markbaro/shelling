@@ -42,7 +42,7 @@ void loop(void)
  * @argv: argument vector
  * Return: 0
  */
-int main(__attribute__((unused)) int argc, char **argv)
+int main(__attribute__((unused)) int argc, __attribute__((unused)) char **argv)
 {
 	loop();
 	return (0);

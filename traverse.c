@@ -13,14 +13,14 @@ int check_system(char **argums)
 	};
 	int index, enquire = 0;
 
-	while (builtin_func[index].id != NULL)
+	while (builtin_func[index].id != 0)
 	{
 		enquire = (_strcmp(builtin_func[index].id, argums[0]) == 0 &&
 		_strlen(builtin_func[index].id) == _strlen(argums[0])) ?
 		builtin_func[index].cmd_function() : enquire;
 		index++;
 	}
-	return ((builtin_func[index].id == NULL) ? -1 : enquire);
+	return ((builtin_func[index].id == 0) ? -1 : enquire);
 }
 /**
  * scan_system - passes arguments to traverse and search functions
