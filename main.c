@@ -23,7 +23,7 @@ void loop(void)
 		isatty(STDIN_FILENO) ? write(STDOUT_FILENO, "simple_shell $", 2) : 0;
 		getline(&line_ptr, &line_size, stdin) == EOF ? (isatty(STDIN_FILENO) ?
 				write(STDOUT_FILENO, "\n", 1) : 0, exit(EXIT_FAILURE)) : 0;
-		line_count = getline(line_ptr);
+		line_count = shell_getline(line_ptr);
 		args_ptr = tokenize(line_ptr, line_count);
 		_strcmp(args_ptr[0], "exit") == 0 &&
 			(_strlen(args_ptr[0]) == _strlen("exit"))

@@ -5,19 +5,13 @@
  * @argums:  command
  * Return: Always 0 on success and -1 0n failure
 */
-typedef struct simple_shell
-{
-	char id;
-	int (*cmd_function) (void);
-} system_built;
-
 int check_system(char **argums)
 {
 	system_built builtin_func[] = {
 		{"env", own_env},
 		{NULL, NULL}
 	};
-	int index, enquire;
+	int index, enquire = 0;
 
 	while (builtin_func[index].id != NULL)
 	{
@@ -38,10 +32,10 @@ int scan_system(char **argums)
 	char **input_cmd = NULL, *temp;
 	int iterate;
 
-	temp =  _strdup(find_shell_path"PATH");
+	temp =  _strdup(get_path("PATH"));
 	if (!temp)
 		return (-1);
-	iterate = getline(temp);
+	iterate = shell_getline(temp);
 	return ((iterate == -1) ? (free_memory(1, temp), -1) : -1);
 	mod_equals(&temp);
 	input_cmd = tokenize(temp, iterate);

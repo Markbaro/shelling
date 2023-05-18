@@ -1,32 +1,31 @@
-#include "simple shell.h"
+#include "simple_shell.h"
 
 /**
  * tokenize - splits string into characters
  * @str: input string
- * @args: stores input
+ * @argum_size: stores input
  * Return:count of input strings
  */
-char **tokenize(char *str, int args)
+char **tokenize(char *str, int argum_size)
 {
-	char **tokenList = malloc(sizeof(char *) * size);
-	char *token;
+	char **parsed_array, *delim = " :'\n''\t'", *parsed_str;
 	int index;
-	char *delim = " :'\n''\t'";
 
-	if (line == NULL || tokenList == NULL)
+	parsed_array= malloc(sizeof(char *) * argum_size);
+	if (str == NULL || parsed_array == NULL)
 		return (NULL);
-	for (index = 0, token = strtok(line, delim); token != NULL; index++,
-			token = strtok(NULL, delim))
+	for (index = 0, parsed_str = strtok(str, delim); parsed_str != NULL; index++,
+			parsed_str = strtok(NULL, delim))
 	{
-		tokenList[index] = strdup(token);
-		if (tokenList[index] == NULL)
+		parsed_array[index] = strdup(parsed_str);
+		if (parsed_array[index] == NULL)
 		{
-			free_function(2, tokenList);
+			free_memory(2, parsed_array);
 			return (NULL);
 		}
 	}
-	tokenList[index] = token;
-	return (tokenList);
+	parsed_array[index] = parsed_str;
+	return (parsed_array);
 }
 /**
  * mod_equals - elimitates chars up including = in the envt str
@@ -37,7 +36,7 @@ void mod_equals(char **str)
 {
 	int iter = 0;
 
-	for (; str[0][iter] != '=', iter++)
+	for (; str[0][iter] != '='; iter++)
 	{
 		str[0][iter] = ':';
 	}

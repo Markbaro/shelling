@@ -6,7 +6,7 @@
  * Return:the converted string
  */
 
-int _atoi(char *str)
+int _myAtoi(char *str)
 {
 	int result = 0;
 	int sign = 1;
@@ -127,7 +127,7 @@ char *_strconcat(char *str1, char *str2)
 	i = 0;
 	while (str2 && str2[i] != '\0')
 	{
-		strcon{j] = str2[i];
+		strcon[j] = str2[i];
 		i++;
 		j++;
 	}

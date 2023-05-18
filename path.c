@@ -10,13 +10,13 @@ char *get_path(char *target)
 {
 	int index = 0;
 
-	while (environ[index] != NULL)
+	while (shell_envt[index] != NULL)
 	{
-		if (_strcmp(environ[index], target) == NULL)
+		if (_strcmp(shell_envt[index], target) == 0)
 			break;
-		else if (environ[index + 1] == NULL)
-			perrror("get_path");
+		else if (shell_envt[index + 1] == NULL)
+			perror("Error: Find Path");
 		index++;
 	}
-	return (environ[index] ? environ[index] : NULL);
+	return (shell_envt[index] ? shell_envt[index] : NULL);
 }

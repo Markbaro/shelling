@@ -11,7 +11,7 @@ int exit_shell(char **arguments, char *input_line)
 {
 	int exitCode = 0;
 
-	exitCode = (arguments[1] != NULL) ? myAtoi(arguments[1]) : 0;
+	exitCode = (arguments[1] != NULL) ? _myAtoi(arguments[1]) : 0;
 
 	if (exitCode == -1)
 		return (-1);

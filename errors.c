@@ -11,7 +11,7 @@
 void error_message(char **argv, char **args, int loops)
 {
 	char *separator = ": ";
-	char *error = "invalid command\n";
+	char *error1 = "invalid command\n";
 
 	if (argv[0] != NULL)
 	{
@@ -20,7 +20,7 @@ void error_message(char **argv, char **args, int loops)
 	}
 	if (loops > 0)
 	{
-		err_code(loops);
+		print_number(loops);
 		write(STDERR_FILENO, separator, _strlen(separator));
 	}
 	if (argv[0] != NULL)
@@ -35,7 +35,7 @@ void error_message(char **argv, char **args, int loops)
  * @loops : error number
  * Return: void
  */
-void print_number(loops)
+void print_number(int loops)
 {
 	int divisor = 1;
 	unsigned int num = loops;

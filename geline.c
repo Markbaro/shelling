@@ -1,12 +1,12 @@
 #include "simple_shell.h"
 
 /**
- * argums_counter - counts rgums in the input string from getline
+ * getline- input string from user
  * @input_str:point to the input string
  * Return: length of input_str
 */
 
-int getline(char *input_str)
+int shell_getline(char *input_str)
 {
 	int iterate, j, flag, i = 0;
 	char *delimiter = " :";

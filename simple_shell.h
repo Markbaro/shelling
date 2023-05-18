@@ -16,12 +16,12 @@
 extern char **shell_envt;
 
 int shell_execute(char **argums);
-void print_number(loops);
+void print_number(int loops);
 int compiler(char **arglist);
 int scan_system(char **argums);
 int check_system(char **argums);
 int exit_shell(char **arguments, char *input_line);
-int getline(char *input_str);
+int shell_getline(char *input_str);
 int main(__attribute__((unused)) int argc, char **argv);
 void loop(void);
 void error_message(char **argv, char **args, int loops);
@@ -30,14 +30,20 @@ void free_double_ptr(char **ptr);
 void free_single_ptr(char *ptr);
 void signals(int sig);
 int own_env(void);
-char **tokenize(char *str, int args);
+char **tokenize(char *str, int argum_size);
 void mod_equals(char **str);
 char *get_path(char *target);
 int scan_dir(char **input_cmd, char **argums);
-int _atoi(char *str);
+int _myAtoi(char *str);
 int _strcmp(char *str1, char *str2);
 int _strlen(char *str);
-char _strdup(char *str);
+char *_strdup(char *str);
 char *_strconcat(char *str1, char *str2);
+
+typedef struct simple_shell
+{
+	char id;
+	int (*cmd_function)(void);
+} system_built;
 
 #endif /* SIMPLE SHELL_H */
