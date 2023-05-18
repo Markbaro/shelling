@@ -7,45 +7,35 @@
 
 void loop(void)
 {
-	int loops, count;
-	char *line;
-	char **args;
-	size_t n;
+	int loop_count, line_count;
+	char *line_ptr;
+	char **args_ptr;
+	size_t line_size;
 
 	signal(SIGINT, signals);
-	loops = 1;
+	loop_count = 1;
 	while (1)
 	{
-		line = NULL;
-		n = 0;
-		args = NULL;
-		if (isatty(STDIN_FILENO))
-			write(STDOUT_FILENO, "$ ", 2);
-		if (getline(&line, &n, stdin) == EOF)
-		{
-			if (isatty(STDIN_FILENO))
-				write(STDOUT_FILENO, "\n", 1);
-			exit(EXIT_FAILURE);
-		}
-		count = getline(line);
-		args = tokenize(line, count);
-		if (_strcmp(args[0], "exit") == 0 &&
-				(_strlen(args[0]) == _strlen("exit")))
-		{
-			if (exit_function(args, line) == -1)
-				err_mess(NULL, args, loops);
-		}
-		else if (args != NULL && args[0] != NULL)
-		{
-			if (interpreter(args) == -1)
-				err_mess(NULL, args, loops);
-		}
-		free_function(1, line);
-		free_function(2, args);
-		loops++;
+		line_ptr = NULL;
+		line_size = 0;
+		args_ptr = NULL;
+
+		isatty(STDIN_FILENO) ? write(STDOUT_FILENO, "simple_shell $", 2) : 0;
+		getline(&line_ptr, &line_size, stdin) == EOF ? (isatty(STDIN_FILENO) ?
+				write(STDOUT_FILENO, "\n", 1) : 0, exit(EXIT_FAILURE)) : 0;
+		line_count = getline(line_ptr);
+		args_ptr = tokenize(line_ptr, line_count);
+		_strcmp(args_ptr[0], "exit") == 0 &&
+			(_strlen(args_ptr[0]) == _strlen("exit"))
+			? (exit_shell(args_ptr, line_ptr) == -1 ?
+					error_message(NULL, args_ptr, loop_count) : 0) :
+			(args_ptr != NULL && args_ptr[0] != NULL ? (compiler(args_ptr) == -1 ?
+								    error_message(NULL, args_ptr, loop_count) : 0) : 0);
+		free_memory(1, line_ptr);
+		free_memory(2, args_ptr);
+		loop_count++;
 	}
 }
-
 /**
  * main - entry point
  * @argc: argument counter
